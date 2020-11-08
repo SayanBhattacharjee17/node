@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Calculator</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+  *{
+    margin:0;
+    padding:0;
+    font-family: 'Merriweather', serif;
+  }
+
+body{
+ background-image: url(https://coolbackgrounds.io/images/backgrounds/index/compute-ea4c57a4.png);
+ color:white;
+
+}
+
+ div.calc{
+   background-color: transparent;
+ 
+ 
+
+border:2px solid white;
+border-radius:10px;
+  }
+  .calc{   
+   
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translateX(-50%) translateY(-50%);
+   
+  }
+
+  h1{
+    padding:15px;
+    text-align:center;
+  }
+
+  .first-num{
+
+    margin:50px;
+  }
+
+  .second-num{
+
+  margin:50px;
+}
+
+input{
+
+  margin:50px;
+  padding:10px;
+  border-radius:4px;
+  opacity:100%;
+
+}
+
+.btn-add{
+  background-color:#2029a2;
+  color:white;
+}
+
+.btn-sub{
+  background-color:#2029a2;
+  color:white;
+}
+
+.btn-mul{
+  background-color:#2029a2;
+  color:white;
+}
+
+.btn-div{
+  background-color:#2029a2;
+  color:white;
+}
+
+.result-1{
+  display:inline;
+}
+
+.result{
+  display:inline;
+}
+
+.btn{
+  background-color:#2029a2; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline;
+  font-size: 16px;
+}
+</style>
+
+</head>
+<body>
+
+  <div class="calc">
+  <h1>Calculator</h1>
+  <form>
+  <input class="first-num" type="text" placeholder="First Number">
+  <input class="second-num" type="text" placeholder="Second Number">
+  <div class="btn-group">
+  <input class="btn-add btn" type="button" value="Add">
+  <input class="btn-sub btn" type="button" value="Sub">
+  <input class="btn-mul btn" type="button" value="Mul">
+  <input class="btn-div btn" type="button" value="Div">
+  </div>
+  </form>
+  <h1 class="result-1">Result is:</h1>
+  <h1 class="result"></h1>
+  </div>
+ 
+  </body>
+</html>
+
+
+<script>
+const firstNum = document.querySelector('.first-num')
+const secondNum = document.querySelector('.second-num')
+const result = document.querySelector('.result')
+const btnAdd = document.querySelector('.btn-add')
+const btnSub = document.querySelector('.btn-sub')
+const btnMul = document.querySelector('.btn-mul')
+const btnDiv = document.querySelector('.btn-div')
+btnAdd.addEventListener('click', async () => {
+const sum = {
+firstNum: firstNum.value,
+secondNum: secondNum.value
+}
+const res = await fetch('/add', {
+body: JSON.stringify(sum),
+method: 'POST',
+headers: { 'Content-Type': 'application/json' }
+})
+const data = await res.json()
+result.innerHTML = data.result
+})
+btnSub.addEventListener('click', async () => {
+const sum = {
+firstNum: firstNum.value,
+secondNum: secondNum.value
+}
+const res = await fetch('/sub', {
+body: JSON.stringify(sum),
+method: 'POST',
+headers: { 'Content-Type': 'application/json' }
+})
+const data = await res.json()
+result.innerHTML = data.result
+})
+btnMul.addEventListener('click', async () => {
+const sum = {
+firstNum: firstNum.value,
+secondNum: secondNum.value
+}
+const res = await fetch('/mul', {
+body: JSON.stringify(sum),
+method: 'POST',
+headers: { 'Content-Type': 'application/json' }
+})
+const data = await res.json()
+result.innerHTML = data.result
+})
+btnDiv.addEventListener('click', async () => {
+const sum = {
+firstNum: firstNum.value,
+secondNum: secondNum.value
+}
+const res = await fetch('/div', {
+body: JSON.stringify(sum),
+method: 'POST',
+headers: { 'Content-Type': 'application/json' }
+})
+const data = await res.json()
+result.innerHTML = data.result
+})
+</script>
